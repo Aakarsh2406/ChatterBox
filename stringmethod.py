@@ -1,0 +1,10 @@
+str1='akaArsh'
+str2=str1.title()
+str3=str1.count('a')
+str4=str1.find('A')
+str5=str1.swapcase()
+print('String as initial',str1)
+print('String after applying Title function to string',str2)
+print('Number of a in a string=',str3)
+print('Index of A in initial string=',str4)
+print('String after applying swapcase method it convert lower to upper and vice versa',str5)
