@@ -1,5 +1,5 @@
-n=int(input('enter the 1 number'))
-m=int(input('enter the 2 number'))
+n=20
+m=10
 c=min(n,m)
 a=n
 b=m
@@ -13,3 +13,5 @@ for i in range(2,c+1):
     else:
         p+=1
 print(a*b//f)
+        
+        
