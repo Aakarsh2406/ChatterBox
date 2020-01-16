@@ -1,0 +1,66 @@
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.*;
+class Faculty {
+        String name;
+        int id;
+        String sub;
+
+    public Faculty(String name,int id,String sub)
+        {
+    {
+        this.name = name;
+        this.id = id;
+        this.sub = sub;
+    }
+        }
+        public String toString()
+        {        return "Name ="+name+" "+"Id ="+id+" "+"Sub ="+sub;
+        }
+}
+public class DemoJDBC {
+    public static  void main(String[] args) throws ClassNotFoundException, SQLException {
+        ArrayList<Faculty> l=new ArrayList<>();
+        Scanner in=new Scanner(System.in);
+        String query="insert into facultytable values(?,?,?)";
+        String driver="com.mysql.cj.jdbc.Driver";
+        String user="root";
+        String pss="";
+        String url="jdbc:mysql://localhost:3306/test?serverTimezone=UTC";
+        Class.forName(driver);
+        Connection con= DriverManager.getConnection(url,user,pss);
+        PreparedStatement pst=con.prepareStatement(query);
+        while(true)
+        {
+                    System.out.println("Enter the Name");
+                    String str=in.next();
+                    System.out.println("Enter you id");
+                    int id=in.nextInt();
+                    System.out.println("Enter your Subject");
+                    String sub=in.next();
+                    pst.setString(1,str);
+                    pst.setInt(2,id);
+                    pst.setString(3,sub);
+                    pst.executeUpdate();
+                    System.out.println("RECORD ENTERED SUCCESSFULLY");
+                    System.out.println("DO you want to enter more record[yes/no]");
+                    String opt=in.next();
+                    if(opt.equalsIgnoreCase("No"))
+                    {
+                        break;
+                    }
+
+
+        }
+        Statement st=con.createStatement();
+        ResultSet rs=st.executeQuery("Select * from facultytable");
+        ResultSet rs1=st.executeQuery("DELETE FROM facultytable WHERE ID=181500055");
+        while(rs.next())
+        {
+            l.add(new Faculty(rs.getString(1),rs.getInt(2),rs.getString(3)));
+        }
+        con.close();
+        System.out.println(l);
+    }
+
+}
